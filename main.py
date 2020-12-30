@@ -22,6 +22,7 @@ class Example(QMainWindow):
                 self.tb.setItem(i, j, QTableWidgetItem(f'{result[i][j]}'))
 
 
+'с коментариями'
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = Example()
