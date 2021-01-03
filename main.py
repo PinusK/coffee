@@ -1,13 +1,53 @@
 import sqlite3
 import sys
-from PyQt5 import uic
+from PyQt5 import uic, QtCore
 from PyQt5.QtWidgets import *
 
 
 class MyWidg(QMainWindow):
     def __init__(self, *arg):
         super().__init__()
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setObjectName("MainWindow")
+        self.resize(279, 308)
+        self.pbt = QPushButton(self)
+        self.pbt.setGeometry(QtCore.QRect(180, 220, 75, 23))
+        self.pbt.setText('добавить')
+        self.lb1 = QLabel(self)
+        self.lb1.setGeometry(QtCore.QRect(10, 10, 61, 21))
+        self.lb1.setText('сорт')
+        self.lb2 = QLabel(self)
+        self.lb2.setGeometry(QtCore.QRect(10, 40, 101, 21))
+        self.lb2.setText('степень обжарки')
+        self.lb3 = QLabel(self)
+        self.lb3.setGeometry(QtCore.QRect(0, 80, 91, 21))
+        self.lb3.setText('молотый/в зернах')
+        self.lb4 = QLabel(self)
+        self.lb4.setGeometry(QtCore.QRect(10, 110, 61, 21))
+        self.lb4.setText('вкус')
+        self.lb5 = QLabel(self)
+        self.lb5.setGeometry(QtCore.QRect(10, 140, 61, 21))
+        self.lb5.setText('цена')
+        self.lb6 = QLabel(self)
+        self.lb6.setGeometry(QtCore.QRect(10, 170, 91, 21))
+        self.lb6.setText('объем упаковки')
+        self.lb7 = QLabel(self)
+        self.lb7.setGeometry(QtCore.QRect(10, 220, 161, 21))
+        self.lb7.setText('')
+        self.comBox = QComboBox(self)
+        self.comBox.setGeometry(QtCore.QRect(110, 80, 111, 22))
+        self.comBox.addItems(["в зернах", "молотый"])
+        self.lE1 = QLineEdit(self)
+        self.lE1.setGeometry(QtCore.QRect(110, 10, 113, 20))
+        self.lE2 = QLineEdit(self)
+        self.lE2.setGeometry(QtCore.QRect(110, 40, 113, 20))
+        self.lE3 = QLineEdit(self)
+        self.lE3.setGeometry(QtCore.QRect(110, 110, 113, 20))
+        self.lE4 = QLineEdit(self)
+        self.lE4.setGeometry(QtCore.QRect(110, 110, 113, 20))
+        self.lE5 = QLineEdit(self)
+        self.lE5.setGeometry(QtCore.QRect(110, 140, 113, 20))
+        self.lE6 = QLineEdit(self)
+        self.lE6.setGeometry(QtCore.QRect(110, 170, 113, 20))
         self.s = arg[0]
         if arg[1]:
             self.pbt.clicked.connect(self.app)
@@ -77,7 +117,6 @@ class MyWidg(QMainWindow):
             молотый_в_зернах = '{tx2}', вкус = '{tx3}',
             цена = '{tx4}', объем_упаковки = '{tx5}'
             where '{id1}' = id""")
-            print(1)
             con.commit()
             cur = con.cursor()
             result = cur.execute("""select * from coffee""").fetchall()
@@ -98,7 +137,27 @@ class MyWidg(QMainWindow):
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.setObjectName("MainWindow")
+        self.resize(640, 518)
         uic.loadUi('coffee.ui', self)
+        self.pbt1_1 = QPushButton(self)
+        self.pbt1_1.setGeometry(QtCore.QRect(50, 10, 75, 23))
+        self.pbt1_1.setText('добавить')
+        self.pbt1_1.clicked.connect(self.app_coffee)
+        self.pbt1_2 = QPushButton(self)
+        self.pbt1_2.setGeometry(QtCore.QRect(140, 10, 75, 23))
+        self.pbt1_2.setText('изменить')
+        self.pbt1_2.clicked.connect(self.upp_coffee)
+        self.pbt1_3 = QPushButton(self)
+        self.pbt1_3.setGeometry(QtCore.QRect(220, 10, 75, 23))
+        self.pbt1_3.setText('удалить')
+        self.pbt1_3.clicked.connect(self.del_coffee)
+        self.tb = QTableWidget(self)
+        self.tb.setGeometry(QtCore.QRect(20, 40, 581, 391))
+        self.lb = QLabel(self)
+        self.lb.setGeometry(QtCore.QRect(30, 450, 571, 16))
+        self.lb.setText('')
+
 
         self.flag = 0
 
