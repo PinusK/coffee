@@ -139,7 +139,6 @@ class MyWidget(QMainWindow):
         super().__init__()
         self.setObjectName("MainWindow")
         self.resize(640, 518)
-        uic.loadUi('coffee.ui', self)
         self.pbt1_1 = QPushButton(self)
         self.pbt1_1.setGeometry(QtCore.QRect(50, 10, 75, 23))
         self.pbt1_1.setText('добавить')
@@ -172,10 +171,6 @@ class MyWidget(QMainWindow):
         for i in range(len(result)):
             for j in range(len(result[i])):
                 self.tb.setItem(i, j, QTableWidgetItem(f'{result[i][j]}'))
-
-        self.pbt1_1.clicked.connect(self.app_coffee)
-        self.pbt2_1.clicked.connect(self.upp_coffee)
-        self.pbt3_1.clicked.connect(self.del_coffee)
 
         self.tb.cellClicked.connect(self.sign_flag)
 
